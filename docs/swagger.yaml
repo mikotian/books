@@ -1,0 +1,149 @@
+basePath: /
+definitions:
+  main.Books:
+    properties:
+      book_author:
+        type: string
+      book_genre:
+        type: string
+      book_publishers:
+        type: string
+      id:
+        type: integer
+      isbn:
+        type: string
+      langauge:
+        type: string
+      prices:
+        type: number
+      status:
+        type: boolean
+      title:
+        type: string
+    type: object
+host: localhost:5000
+info:
+  contact: {}
+  title: Books API
+paths:
+  /books:
+    get:
+      consumes:
+      - application/json
+      description: Get All Books
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Books'
+            type: array
+      summary: Get All Books
+  /books/{some_id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a book
+      operationId: int
+      produces:
+      - application/json
+      responses:
+        "204":
+          description: No Content
+      summary: Delete a Book
+    get:
+      consumes:
+      - application/json
+      description: get book by ID
+      operationId: int
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Get Book by ID
+    patch:
+      consumes:
+      - application/json
+      description: Partially update a book
+      operationId: int
+      parameters:
+      - description: same as post body
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/main.Books'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/main.Books'
+      summary: Partially update a book
+    post:
+      consumes:
+      - application/json
+      description: Add a new book
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/main.Books'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Books'
+      summary: Add a new book
+    put:
+      consumes:
+      - application/json
+      description: Update a book
+      operationId: int
+      parameters:
+      - description: body data
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/main.Books'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            $ref: '#/definitions/main.Books'
+      summary: Update a book
+  /books/search:
+    get:
+      consumes:
+      - application/json
+      description: Get Books by search criteria
+      parameters:
+      - description: Some ID
+        in: path
+        name: some_id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: ok
+          schema:
+            type: string
+      summary: Search Books
+schemes:
+- http
+swagger: "2.0"
